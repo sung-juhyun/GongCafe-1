@@ -20,11 +20,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/robotolight"
         android:text="카페 등록"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +52,7 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/cafeName_edit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
@@ -74,13 +75,13 @@
         android:layout_marginTop="20dp"
         android:text="∙&#160;주소"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/cafeName_edit"
         android:fontFamily="@font/robotolight"
         android:textSize="20sp"
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/address_edit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
@@ -96,7 +97,7 @@
         android:paddingLeft="10dp"/>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/location_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -107,7 +108,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/address_edit" />
 
     <TextView
         android:id="@+id/textView5"
@@ -119,11 +120,11 @@
         android:text="∙&#160;카페 사진"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/location_btn"
         android:textColor="@color/black"/>
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/cafePicture_btn"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -131,10 +132,10 @@
         android:background="@drawable/border"
         android:text="사진 첨부"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/location_btn" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/menuPicture_btn"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -142,7 +143,7 @@
         android:background="@drawable/border"
         android:text="사진 첨부"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/cafePicture_btn" />
 
     <TextView
         android:id="@+id/textView6"
@@ -171,7 +172,7 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/info_edit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
@@ -183,7 +184,7 @@
         android:hint="운영시간, 간단한 설명 등"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/menuPicture_btn"
         android:paddingLeft="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
