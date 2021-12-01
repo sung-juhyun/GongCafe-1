@@ -55,11 +55,11 @@ public class SearchActivity extends AppCompatActivity implements ItemAdapter.onI
 
     private void fillData() {
         itemList = new ArrayList<>(); //샘플테이터
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "One", "Ten"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Two", "Eleven"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Three", "Twelve"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Four", "Thirteen"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Five", "Fourteen"));
+        itemList.add(new ItemModel(R.drawable.cafe1, "One", "Ten"));
+        itemList.add(new ItemModel(R.drawable.cafe2, "Two", "Eleven"));
+        itemList.add(new ItemModel(R.drawable.cafe3, "Three", "Twelve"));
+        itemList.add(new ItemModel(R.drawable.cafe4, "Four", "Thirteen"));
+        itemList.add(new ItemModel(R.drawable.cafe5, "Five", "Fourteen"));
         itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Six", "Fifteen"));
         itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Seven", "Sixteen"));
         itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Eight", "Seventeen"));
