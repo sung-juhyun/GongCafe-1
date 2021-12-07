@@ -55,15 +55,15 @@ public class SearchActivity extends AppCompatActivity implements ItemAdapter.onI
 
     private void fillData() {
         itemList = new ArrayList<>(); //샘플테이터
-        itemList.add(new ItemModel(R.drawable.cafe1, "One", "Ten"));
-        itemList.add(new ItemModel(R.drawable.cafe2, "Two", "Eleven"));
-        itemList.add(new ItemModel(R.drawable.cafe3, "Three", "Twelve"));
-        itemList.add(new ItemModel(R.drawable.cafe4, "Four", "Thirteen"));
-        itemList.add(new ItemModel(R.drawable.cafe5, "Five", "Fourteen"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Six", "Fifteen"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Seven", "Sixteen"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Eight", "Seventeen"));
-        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Nine", "Eighteen"));
+        itemList.add(new ItemModel(R.drawable.cafe1, "Starbucks", "스타벅스"));
+        itemList.add(new ItemModel(R.drawable.cafe2, "Tom N Toms", "탐엔탐스"));
+        itemList.add(new ItemModel(R.drawable.cafe3, "EDIYA", "이다야"));
+        itemList.add(new ItemModel(R.drawable.cafe4, "Twosome Place", "투썸플레이스"));
+        itemList.add(new ItemModel(R.drawable.cafe5, "I`m 1L", "일리터"));
+        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "caffe pascucci", "파스쿠찌"));
+        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "SevenCafe", "Sixteen"));
+        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "EightCafe", "Seventeen"));
+        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "NineCafe", "Eighteen"));
     }
 
     /****************************************************
