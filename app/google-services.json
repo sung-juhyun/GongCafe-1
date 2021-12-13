@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "864243119279",
+    "project_id": "gong-cafe",
+    "storage_bucket": "gong-cafe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864243119279:android:d0a0bb76cb0e90ba8ed05a",
+        "android_client_info": {
+          "package_name": "kr.ac.mokwon.gongcafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864243119279-pu6oinna1rvhu412qfk0fsj9t86gj16p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwSm0r44KfqwMBV1bNINxIdXIFiEFt7_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864243119279-pu6oinna1rvhu412qfk0fsj9t86gj16p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
