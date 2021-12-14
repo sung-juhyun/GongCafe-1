@@ -24,7 +24,6 @@ public class SearchActivity extends AppCompatActivity implements ItemAdapter.onI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-
         setUpRecyclerView();
     }
 
@@ -72,9 +71,10 @@ public class SearchActivity extends AppCompatActivity implements ItemAdapter.onI
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        //getMenuInflater().inflate(R.menu.menu, menu);
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = findViewById(R.id.action_search2);
+
 
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
