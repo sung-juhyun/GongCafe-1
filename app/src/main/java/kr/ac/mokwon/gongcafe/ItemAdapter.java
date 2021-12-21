@@ -1,5 +1,8 @@
 package kr.ac.mokwon.gongcafe;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private List<ItemModel> mDataList;
     private List<ItemModel> mDataListAll;
+    private Context context;
+    private Intent intent;
 
     //constructor
     public ItemAdapter(List<ItemModel> items) {
@@ -73,7 +78,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             holder.itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    mListener.onItemClicked(position);
+                    intent = new Intent(v.getContext(), SearchActivity_2.class);
+                    intent.putExtra("images", mDataList.get(pos).getImageResource());
+                    intent.putExtra("title",mDataList.get(pos).getText1());
+                    intent.putExtra("description", mDataList.get(pos).getText2());
+                    v.getContext().startActivity(intent);
+
                     //mListener.onItemClicked(item);
                 }
             });
