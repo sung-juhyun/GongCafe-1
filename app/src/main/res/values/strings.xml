@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GongCafe</string>
     <string name="sub_title">실시간 인기 TOP 10</string>
+    <string name="facebook_app_id">3058606167616238</string>
+    <string name="fb_login_protocol_scheme">fb3058606167616238</string>
+
+    <!--    <string name="default_web_client_id" translatable="false">864243119279-pu6oinna1rvhu412qfk0fsj9t86gj16p.apps.googleusercontent.com</string>-->
 </resources>

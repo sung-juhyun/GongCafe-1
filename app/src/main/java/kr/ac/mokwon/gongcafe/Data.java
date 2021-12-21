@@ -5,6 +5,9 @@ public class Data {
     private String cafeName;
     private String cafeInfo;
     private int resId;
+    private String address;
+
+    public Data(){}
 
     public String getCafeName(){
         return cafeName;
@@ -28,5 +31,13 @@ public class Data {
 
     public void setResId(int resId){
         this.resId = resId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

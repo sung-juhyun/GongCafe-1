@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity"/>
-        <activity android:name=".SearchActivity_2"/>
         <activity android:name=".RegistrationActivity"/>
         <activity android:name=".MypageActivity"/>
     </application>
