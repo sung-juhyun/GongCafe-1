@@ -45,7 +45,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/login_btn"
+        android:onClick="myPageLoginListener"
+        android:id="@+id/loginJoin_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -70,7 +71,7 @@
         android:background="#BDBEC0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/loginJoin_btn" />
 
     <Button
         android:id="@+id/review_btn"

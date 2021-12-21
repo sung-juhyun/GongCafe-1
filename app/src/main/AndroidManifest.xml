@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.ac.mokwon.gongcafe">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,8 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity"/>
-        <activity android:name=".RegistrationActivity"/>
         <activity android:name=".MypageActivity"/>
+        <activity android:name=".RegistrationActivity"/>
+        <activity android:name=".GoogleSignInActivity"/>
     </application>
 
 </manifest>

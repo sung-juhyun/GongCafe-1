@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "864243119279",
+    "firebase_url": "https://gong-cafe-default-rtdb.firebaseio.com",
     "project_id": "gong-cafe",
     "storage_bucket": "gong-cafe.appspot.com"
   },
