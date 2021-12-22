@@ -1,30 +1,64 @@
 package kr.ac.mokwon.gongcafe;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-import java.util.Arrays;
-import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainAdapter adapter;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<ImageDTO> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
 
-        getData();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("images");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){ // 반복분으로 데이터 List를 추출해냄
+                    ImageDTO imageDTO = snapshot.getValue(ImageDTO.class); // 만들어뒀던 객체에 데이터를 담는다.
+                    arrayList.add(imageDTO); // 담은 데이터들을 배열 리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("MainActivity", String.valueOf(error.toException())); //에러문 출력
+            }
+        });
+        adapter = new MainAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
     }
+
 
     public void searchListener(View target){
         Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
@@ -39,38 +73,6 @@ public class MainActivity extends AppCompatActivity {
     public void myPageListener(View target){
         Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
         startActivity(intent);
-    }
-
-    private void init() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,recyclerView.HORIZONTAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        adapter = new MainAdapter();
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void getData(){
-        List<String> listCafeName = Arrays.asList("공스카페","카페2","카페3","카페4","카페5");
-        List<String> listCafeInfo = Arrays.asList("설명1","설명2","설명3","설명4","설명5");
-        List<Integer> listResId = Arrays.asList(
-                R.drawable.cafe1,
-                R.drawable.cafe2,
-                R.drawable.cafe3,
-                R.drawable.cafe4,
-                R.drawable.cafe5
-        );
-
-        for(int i = 0; i<listCafeName.size();i++){
-            Data data = new Data();
-            data.setCafeName(listCafeName.get(i));
-            data.setCafeInfo(listCafeInfo.get(i));
-            data.setResId(listResId.get(i));
-
-            adapter.addItem(data);
-        }
-        adapter.notifyDataSetChanged();
     }
 
 }
