@@ -19,4 +19,14 @@ public class MypageActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), GoogleSignInActivity.class);
         startActivity(intent);
     }
+    
+    public void myReviewListener(View target){
+        Intent intent = new Intent(getApplicationContext(), ReviewlistActivity.class);
+        startActivity(intent);
+    }
+    
+    public void wishlistListener(View target){
+        Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
+        startActivity(intent);
+    }
 }
