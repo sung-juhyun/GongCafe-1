@@ -7,17 +7,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -113,15 +109,15 @@ public class RegistrationActivity extends AppCompatActivity {
             Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
 
 
-            ImageDTO imageDTO = new ImageDTO();
-            imageDTO.imageUrl = downloadUrl.toString();
-            imageDTO.cafeName = cafeName.getText().toString();
-            imageDTO.address = address.getText().toString();
-            imageDTO.info = info.getText().toString();
-            imageDTO.uid = auth.getCurrentUser().getUid();
-            imageDTO.userId = auth.getCurrentUser().getEmail();
+            CafeDTO cafeDTO = new CafeDTO();
+            cafeDTO.imageUrl = downloadUrl.toString();
+            cafeDTO.cafeName = cafeName.getText().toString();
+            cafeDTO.address = address.getText().toString();
+            cafeDTO.info = info.getText().toString();
+            cafeDTO.uid = auth.getCurrentUser().getUid();
+            cafeDTO.userId = auth.getCurrentUser().getEmail();
 
-            database.getReference().child("images").push().setValue(imageDTO);
+            database.getReference().child("images").push().setValue(cafeDTO);
 
         });
 

@@ -2,163 +2,63 @@ package kr.ac.mokwon.gongcafe;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-//
-//    private ItemAdapter adapter;
-//    private List<ItemModel> itemList;
-
-    private List<ImageDTO> imageDTOs = new ArrayList<>();
-    private List<String> uidLists = new ArrayList<>();
-    private FirebaseDatabase database;
-    private RecyclerView recyclerView;
-
+    private RecyclerView.Adapter adapter;
+    private ArrayList<CafeDTO> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        database =FirebaseDatabase.getInstance();
-        setUpRecyclerView();
 
+        RecyclerView recyclerView = findViewById(R.id.search_recyclerView);
+        recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
 
-
-    }
-
-    class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
-
-            return new CustomViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((CustomViewHolder)holder).textView.setText(imageDTOs.get(position).cafeName);
-            ((CustomViewHolder)holder).textView2.setText(imageDTOs.get(position).info);
-
-            Glide.with(holder.itemView.getContext()).load(imageDTOs.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
-
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return imageDTOs.size();
-        }
-
-        private class CustomViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView;
-            TextView textView;
-            TextView textView2;
-
-            public CustomViewHolder(View view) {
-                super(view);
-                imageView = (ImageView) view.findViewById(R.id.search_image_view);
-                textView = (TextView) view.findViewById(R.id.search_text_view1);
-                textView2 = (TextView) view.findViewById(R.id.search_text_view2);
-            }
-        }
-    }
-
-//    }
-
-    /****************************************************
-     리사이클러뷰, 어댑터 셋팅
-     ***************************************************/
-    private void setUpRecyclerView() {
-        recyclerView = findViewById(R.id.search_recyclerView);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
-        recyclerView.setAdapter(boardRecyclerViewAdapter);
-
-        database.getReference().child("images").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("images");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                imageDTOs.clear();;
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ImageDTO imageDTO = snapshot.getValue(ImageDTO.class);
-                    imageDTOs.add(imageDTO);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){ // 반복분으로 데이터 List를 추출해냄
+                    CafeDTO cafeDTO = snapshot.getValue(CafeDTO.class); // 만들어뒀던 객체에 데이터를 담는다.
+                    arrayList.add(cafeDTO); // 담은 데이터들을 배열 리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
-                boardRecyclerViewAdapter.notifyDataSetChanged();
-
-
-
-
+                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onCancelled(@NonNull DatabaseError error) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("SearchActivity", String.valueOf(error.toException())); //에러문 출력
             }
         });
-
+        adapter = new ItemAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
     }
-        //recyclerview
-//        RecyclerView search_recyclerView = findViewById(R.id.search_recyclerView);
-//        search_recyclerView.setHasFixedSize(true);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//
-//        //adapter
-//        itemList = new ArrayList<>(); //샘플테이터
-//        fillData();
-//        adapter = new ItemAdapter(itemList);
-//        search_recyclerView.setLayoutManager(layoutManager);
-//        search_recyclerView.setAdapter(adapter);
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL); //밑줄
-//        search_recyclerView.addItemDecoration(dividerItemDecoration);
-//
-//        //데이터셋변경시
-//        //adapter.dataSetChanged(exampleList);
-//
-//        //어댑터의 리스너 호출
-//        adapter.setOnClickListener(this);
-//    }
-
-//    private void fillData() {
-//        itemList = new ArrayList<>(); //샘플테이터
-//        itemList.add(new ItemModel(R.drawable.cafe1, "Starbucks", "스타벅스"));
-//        itemList.add(new ItemModel(R.drawable.cafe2, "Tom N Toms", "탐엔탐스"));
-//        itemList.add(new ItemModel(R.drawable.cafe3, "EDIYA", "이다야"));
-//        itemList.add(new ItemModel(R.drawable.cafe4, "Twosome Place", "투썸플레이스"));
-//        itemList.add(new ItemModel(R.drawable.cafe5, "I`m 1L", "일리터"));
-//        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "caffe pascucci", "파스쿠찌"));
-//        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "SevenCafe", "Sixteen"));
-//        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "EightCafe", "Seventeen"));
-//        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "NineCafe", "Eighteen"));
-//    }
 
     /****************************************************
      onCreateOptionsMenu SearchView  기능구현

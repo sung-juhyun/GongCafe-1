@@ -1,6 +1,6 @@
 package kr.ac.mokwon.gongcafe;
 
-public class ImageDTO {
+public class CafeDTO {
 
     public String imageUrl;
     public String cafeName;

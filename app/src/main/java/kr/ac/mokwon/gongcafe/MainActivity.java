@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter adapter;
-    private ArrayList<ImageDTO> arrayList;
+    private ArrayList<CafeDTO> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){ // 반복분으로 데이터 List를 추출해냄
-                    ImageDTO imageDTO = snapshot.getValue(ImageDTO.class); // 만들어뒀던 객체에 데이터를 담는다.
-                    arrayList.add(imageDTO); // 담은 데이터들을 배열 리스트에 넣고 리사이클러뷰로 보낼 준비
+                    CafeDTO cafeDTO = snapshot.getValue(CafeDTO.class); // 만들어뒀던 객체에 데이터를 담는다.
+                    arrayList.add(cafeDTO); // 담은 데이터들을 배열 리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
