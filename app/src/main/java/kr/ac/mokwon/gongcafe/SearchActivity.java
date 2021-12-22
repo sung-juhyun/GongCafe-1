@@ -37,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("images");
+        DatabaseReference databaseReference = database.getReference("Cafe");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

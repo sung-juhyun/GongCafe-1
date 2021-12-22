@@ -99,7 +99,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         Uri file = Uri.fromFile(new File(uri));
-        StorageReference riversRef = storageRef.child("images/"+file.getLastPathSegment());
+        StorageReference riversRef = storageRef.child("Cafe/"+file.getLastPathSegment());
         UploadTask uploadTask = riversRef.putFile(file);
 
         uploadTask.addOnFailureListener(exception -> {
@@ -117,7 +117,7 @@ public class RegistrationActivity extends AppCompatActivity {
             cafeDTO.uid = auth.getCurrentUser().getUid();
             cafeDTO.userId = auth.getCurrentUser().getEmail();
 
-            database.getReference().child("images").push().setValue(cafeDTO);
+            database.getReference().child("Cafe").push().setValue(cafeDTO);
 
         });
 
